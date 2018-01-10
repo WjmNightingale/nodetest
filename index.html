@@ -13,7 +13,8 @@
     </h1>
 
     <button id="pay">付款一块钱</button>
-    <!-- <script>假装可以扣钱
+    <script>
+   //假装可以扣钱
     let pay = document.getElementById('pay')
     let amount = document.getElementById('amount')
     pay.addEventListener('click',(e) => {
@@ -24,10 +25,11 @@
          num = num - 1
         amount.innerText = num;
     })
-    </script> -->
+    </script>
 
-    <!-- image发请求
+    
     <script>
+        //image发请求
     let pay = document.getElementById('pay')
     let amount = document.getElementById('amount')
     pay.addEventListener('click',(e) => {
@@ -41,10 +43,10 @@
             alert('打钱失败！')
         })
     })
-    </script> -->
+    </script>
 
-    <!-- script发请求 -->
-    <!-- <script>
+    <!-- 动态script发请求 -->
+    <script>
         //PORT 8001 node server.js
         // server rendered javascript(SRJ)服务器返回的javascript
         window.xxx = function (result) {
@@ -76,7 +78,7 @@
                 delete window[functionName]
             }
         })
-    </script> -->
+    </script>
 
     <script>
         //jQuery实现JSONP
@@ -97,17 +99,17 @@
 
 
     <!-- 用form发请求 -->
-    <!-- <form action="/pay" method="post" target="result">
+    <form action="/pay" method="post" target="result">
     <input type="text" name="number" value="1">
     <input type="submit" value="付款">
-    </form> -->
+    </form>
     <!-- iframe用来刷新页面(过时的方式，了解即可) -->
-    <!-- <iframe name="result" src="about:blank" frameborder="0"></iframe> -->
+    <iframe name="result" src="about:blank" frameborder="0"></iframe>
 
     <!-- image也可以发请求，但只能用get请求 -->
 
 
-    <!-- <script src="/main.js"></script> -->
+    <script src="/main.js"></script>
 </body>
 
 </html>
