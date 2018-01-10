@@ -1,0 +1,113 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1> 账户余额
+        <span id="amount">&&&amount&&&</span>
+    </h1>
+
+    <button id="pay">付款一块钱</button>
+    <!-- <script>假装可以扣钱
+    let pay = document.getElementById('pay')
+    let amount = document.getElementById('amount')
+    pay.addEventListener('click',(e) => {
+        let n = amount.innerText
+        console.log(n)
+        let num = parseInt(n,10)
+        console.log(num)
+         num = num - 1
+        amount.innerText = num;
+    })
+    </script> -->
+
+    <!-- image发请求
+    <script>
+    let pay = document.getElementById('pay')
+    let amount = document.getElementById('amount')
+    pay.addEventListener('click',(e) => {
+        let image = document.createElement('img')
+        image.src = '/pay'
+        image.addEventListener('load',(e) => {
+            alert('打钱成功!')
+            amount.innerText = amount.innerText - 1
+        })
+        image.addEventListener('error',(e) => {
+            alert('打钱失败！')
+        })
+    })
+    </script> -->
+
+    <!-- script发请求 -->
+    <!-- <script>
+        //PORT 8001 node server.js
+        // server rendered javascript(SRJ)服务器返回的javascript
+        window.xxx = function (result) {
+
+        }
+        let pay = document.getElementById('pay')
+        let amount = document.getElementById('amount')
+        pay.addEventListener('click', function (e) {
+            let script = document.createElement('script')
+            let functionName = 'wjm' + parseInt(Math.random() * 100000, 10)
+            //函数名用随机数
+            window[functionName] = function (result) {
+                if (result === 'success') {
+                    amount.innerText = amount.innerText - 1
+                    console.log('在打钱')
+                } else {
+                    alert('打钱失败')
+                }
+            }
+            script.src = '/pay?callback=' + functionName
+            document.body.appendChild(script)
+            script.onload = function (e) {
+                alert('下载成功！')
+                delete window[functionName]
+            }
+            script.onerror = function (e) {
+                alert('打钱失败！')
+                e.currentTarget.remove()
+                delete window[functionName]
+            }
+        })
+    </script> -->
+
+    <script>
+        //jQuery实现JSONP
+        let pay = document.getElementById('pay')
+        let amount = document.getElementById('amount')
+        pay.addEventListener('click', function () {
+            $.ajax({
+                url: "http://jack.com:8002/pay",
+                dataType: "jsonp",
+                success: function (response) {
+                    if (response === 'success') {
+                        alert('frank.com请求jack.com的动态script，JSONP成功响应！')
+                    }
+                }
+            })
+        })
+    </script>
+
+
+    <!-- 用form发请求 -->
+    <!-- <form action="/pay" method="post" target="result">
+    <input type="text" name="number" value="1">
+    <input type="submit" value="付款">
+    </form> -->
+    <!-- iframe用来刷新页面(过时的方式，了解即可) -->
+    <!-- <iframe name="result" src="about:blank" frameborder="0"></iframe> -->
+
+    <!-- image也可以发请求，但只能用get请求 -->
+
+
+    <!-- <script src="/main.js"></script> -->
+</body>
+
+</html>
