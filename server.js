@@ -21,19 +21,19 @@ var server = http.createServer(function (request, response) {
     }
     var pathNoQuery = parsedUrl.pathname
     var queryObject = parsedUrl.query
-    var path1 = '/pay?callback='+queryObject.callback
+    var path1 = '/pay?callback=' + queryObject.callback
     // console.log(path1)
     // /pay?callback=jQuery3210451818785934083_1515584234587
     // console.log('\n')
     // console.log(path === path1)
     var mehtod = request.method;
-    
+
     // console.log(queryObject)
     switch (path) {
         case '/':
-            var string = fs.readFileSync('./index.html', 'utf-8')
-            var amount = fs.readFileSync('./db', 'utf-8')
-            string = string.replace('&&&amount&&&', amount)
+            var string = fs.readFileSync('./ajax.html', 'utf-8')
+            // var amount = fs.readFileSync('./db', 'utf-8')
+            // string = string.replace('&&&amount&&&', amount)
             response.setHeader('Content-Type', 'text/html;charset=utf-8')
             response.write(string)
             response.end()
@@ -50,16 +50,34 @@ var server = http.createServer(function (request, response) {
             response.write(string)
             response.end()
             break
-        case `${path}` :
-            // var amount = fs.readFileSync('./db', 'utf-8')
-            // var newAmount = amount - 1
-            // fs.writeFileSync('./db', newAmount)
+        // case `${path}` :
+        //     // var amount = fs.readFileSync('./db', 'utf-8')
+        //     // var newAmount = amount - 1
+        //     // fs.writeFileSync('./db', newAmount)
+        //     response.statusCode = 200
+        //     response.setHeader('Content-Type', 'application/javascript')
+        //     //服务端刷新
+        //     // response.write('Hi')
+        //     response.write(`${queryObject.callback}.call(undefined,'success')
+        //     `)
+        //     response.end()
+        //     break
+        case '/xxx':
             response.statusCode = 200
-            response.setHeader('Content-Type', 'application/javascript')
-            //服务端刷新
-            // response.write('Hi')
-            response.write(`${queryObject.callback}.call(undefined,'success')
-            `)
+            response.setHeader('Content-Type', 'text/html;charset=utf-8')
+            var jsonObject = {
+                "name":"wjm",
+                "sex":"male",
+                "age":18,
+                "marry":false,
+                "family":{
+                    "father":"wjmfather",
+                    "mother":"wjmmother"
+                },
+                "like":['footbale','tea','sweet']
+            }
+            var jsonString = JSON.stringify(jsonObject);
+            response.write(jsonString)
             response.end()
             break
         default:
