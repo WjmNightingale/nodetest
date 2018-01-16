@@ -15,11 +15,14 @@
         myButton.addEventListener('click', function (e) {
             let request = new XMLHttpRequest()
             request.open('POST', '/xxx')//配置request
-            request.send()
+            request.setRequestHeader('wjm','18')
+            request.setRequestHeader('Content-Type','x-www-url-encoded')
+            request.send('我偏要设置第四部分')
             request.onreadystatechange = function (e) {
                 if (request.readyState === 4) {
                     console.log('请求响应都完毕了')
                     if (request.status >= 200 && request.status < 300) {
+                        console.log(request.getAllResponseHeaders())
                         console.log('说明请求成功了')
                         let dataType = request.responseType
                         console.log(dataType)

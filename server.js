@@ -64,7 +64,7 @@ var server = http.createServer(function (request, response) {
         //     break
         case '/xxx':
             response.statusCode = 200
-            response.setHeader('Content-Type', 'text/html;charset=utf-8')
+            response.setHeader('Content-Type', 'text/json;charset=utf-8')
             var jsonObject = {
                 "name":"wjm",
                 "sex":"male",
